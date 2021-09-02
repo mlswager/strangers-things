@@ -10,29 +10,37 @@ const APIURL = `${BASE_URL}/api/${COHORT}`
 
 const PostsView = (props) => {
 
-    let{posts,setPosts}=props
+    let{posts,setPosts,token}=props
+
+    console.log(posts)
+    console.log(token)
 
     useEffect(()=>{
         const fetchPosts = async () =>{
-            const response = await axios.get(APIURL+"/posts");
-            //for some reason this has to go down multiple levels to get to the array (axios put it into an object so the first data is to get into that object, then there was an object element called data anyways, then I had to go into posts to get the data in the posts)
-            let data = response.data.data.posts
-            setPosts(data)
-            //console.log(posts)
-        }
-        fetchPosts()
+                const response = await axios.get(APIURL+"/posts",{
+                    //askTravis: for some reason it seems to be doing the step to move the token from local storage to state after it is fetching the post. I fixed it here by having it check local storage instead
+                    headers: {Authorization: `Bearer ${localStorage.getItem("token")}`,}
+                });
+    
+                let data = response.data.data.posts
+                setPosts(data)
+                    //console.log(posts)
+                }
+                fetchPosts()
     },[])
-    //console.log to check that it is pulling the data correctly. Strange thing where it returns 2 logs. The first one is an empty array because it is logging what it remembers the array was at the beginning. The second is the array with data because it is logging what the array is.
     //console.log(posts)
 
     return(
         <div className="posts-class">
             {
-                posts.map(function(element){
+                posts.map(function(element,index){
                     return(
-                        <div key={element.id} className="post-class">
+                        <div key={index} className="post-class">
                             <h2>{element.title}</h2>
                             <p>{element.description}</p>
+                            {/* When I log out it doesn't refresh the page to not show the messages */}
+                            <p>{element.isAuthor ? "This is your post!":"this is not your post"}</p>
+                            <p>{element.messages.length>0 && element.isAuthor ? element.messages:"you have no messages"}</p>
                         </div>
                     )
                 })

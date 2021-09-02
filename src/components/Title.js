@@ -4,7 +4,6 @@ import {BrowserRouter as Router,Route, Link} from "react-router-dom"
 
 
 import Logout from "./Logout";
-import Login from "./Logout";
 
 
 const BASE_URL = "https://strangers-things.herokuapp.com";
@@ -17,18 +16,17 @@ const Title = (props) => {
     let{token,setToken}=props
 
     return(
-        <Router>
         <div id = "title">
+            <div id="title-words">
             <h1>Stranger's Things</h1>
-            
-            <div id="login/out">
+            </div>
+            <div id="buttons">
+                {token ? <Link to = "/add-post">Add Post</Link>:null}
                 {token ? <Logout
                 token = {token}
                 setToken = {setToken}
                 /> : <Link to = "/login">Login</Link>}
-
-            //use render and use history
-
+                
             </div>
 
 
@@ -42,7 +40,6 @@ const Title = (props) => {
                 <option value="messages">My Messages</option>
             </select> */}
         </div>
-        </Router>
     )
 
 

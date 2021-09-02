@@ -2,6 +2,19 @@
 
 
 
-Title{
-background-color: brown;
+#title{
+background-color: rgb(224, 255, 255);
+padding: 10px;
+display:block;
+
+}
+#title-words{
+    display:flex;
+    justify-content:center;
+}
+
+#buttons{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
 }

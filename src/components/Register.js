@@ -50,6 +50,12 @@ const Register = (props) => {
         //setPassword("")
     }
 
+    if(token){
+        return(
+            <Redirect to ="/"/>
+        )
+    }
+
     return(
         <div if="registration-screen">
             <h2>Register</h2>
@@ -57,7 +63,7 @@ const Register = (props) => {
                 <label htmlFor = "username">Username</label>
                 <input type="text" name="username" value={username} onChange={function(event){setUserName(event.target.value)}}/>
                 <label htmlFor = "password">Password</label>
-                <input type="text" name="password" value={password} onChange={function(event){setPassword(event.target.value)}}/>
+                <input type="password" name="password" value={password} onChange={function(event){setPassword(event.target.value)}}/>
                 <button type="Submit">Register</button>
             </form>
         </div>
