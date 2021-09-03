@@ -12,9 +12,11 @@ import Title from "./components/Title"
 
 import AddPost from "./components/addpost"
 
+
 const App = () => {
     const[posts,setPosts]=useState([])
     const[token,setToken]=useState("")
+    const[selectPost,setSelectPost]=useState("")
 
     //the below useEffect is used if the page is refreshed and there is no token in state, but there is a token in local storage it puts the token from local storage into state
     useEffect(()=>{
@@ -31,13 +33,13 @@ const App = () => {
 
             <Route
             path="/add-post"
-            render={() => <AddPost
+            render={(renderprops) => <AddPost {...renderprops}
                 token = {token}/>}
             />
 
             <Route
             path="/login"
-            render={() => <Login
+            render={(renderprops) => <Login {...renderprops}
                 token = {token}
                 setToken = {setToken}/>}
             />
@@ -54,7 +56,10 @@ const App = () => {
             render={() => <PostsView
                 posts = {posts}
                 setPosts = {setPosts}
-                token = {token}/>}
+                token = {token}
+                selectPost={selectPost}
+                setSelectPost={setSelectPost}
+                />}
             />
         </Router>
 

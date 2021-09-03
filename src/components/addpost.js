@@ -11,10 +11,9 @@ const APIURL = `${BASE_URL}/api/${COHORT}`
 
 
 
-//title, description, price, location, willing to deliver
 const AddPost = (props) => {
 
-    let{token}=props
+    let{token,history}=props
 
     const[title,setTitle]=useState("")
     const[description,setDescription]=useState("")
@@ -41,6 +40,7 @@ const AddPost = (props) => {
             })
             console.log(response.data.success)
             console.log(response.data.data.post)
+            props.history.push("/")
 
         }
         catch(error){

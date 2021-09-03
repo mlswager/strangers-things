@@ -32,6 +32,7 @@ const Login = (props) => {
             //console.log(response.data.data)
             setToken(response.data.data.token)
             localStorage.setItem("token",response.data.data.token)
+            props.history.push("/")
         }
         catch(error){
             console.log("error with login: "+error)
@@ -56,11 +57,11 @@ const Login = (props) => {
     }
 
     //ask Travis about the history.push method soo it will take the use back to whatever page they were just on. Right now it just redirects to the home(posts) page
-    if(token){
-        return(
-            <Redirect to ="/"/>
-        )
-    }
+    // if(token){
+    //     return(
+    //         <Redirect to ="/"/>
+    //     )
+    // }
     
     return(
         <div id="login-screen">
