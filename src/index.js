@@ -12,11 +12,18 @@ import Title from "./components/Title"
 
 import AddPost from "./components/addpost"
 
+import MessageForm from "./components/messageForm"
+
+import UserProfile from "./components/userProfile";
+
+import Search from "./components/search";
+
 
 const App = () => {
     const[posts,setPosts]=useState([])
     const[token,setToken]=useState("")
     const[selectPost,setSelectPost]=useState("")
+    const[searchState,setSearchState]=useState("")
 
     //the below useEffect is used if the page is refreshed and there is no token in state, but there is a token in local storage it puts the token from local storage into state
     useEffect(()=>{
@@ -52,13 +59,33 @@ const App = () => {
             />
 
             <Route
+            path="/message-form"
+            render={(renderprops) => <MessageForm {...renderprops}
+                token = {token}
+                setToken = {setToken}
+                selectPost = {selectPost}/>}
+            />
+
+            <Route
+            path="/user-profile"
+            render={(renderprops) => <UserProfile {...renderprops}
+                posts = {posts}
+                setPosts = {setPosts}
+                token = {token}
+                setToken = {setToken}
+                selectPost = {selectPost}/>}
+            />
+
+            <Route
             exact path="/"
-            render={() => <PostsView
+            render={(renderprops) => <PostsView {...renderprops}
                 posts = {posts}
                 setPosts = {setPosts}
                 token = {token}
                 selectPost={selectPost}
                 setSelectPost={setSelectPost}
+                searchState={searchState}
+                setSearchState={setSearchState}
                 />}
             />
         </Router>

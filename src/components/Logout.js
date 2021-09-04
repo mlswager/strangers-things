@@ -22,7 +22,7 @@ const Logout = (props) => {
     }
 
 
-    function handleSubmit(event){
+    function handleClick(event){
         event.preventDefault()
         
         //this is where I am calling the function above to submit the username/password
@@ -31,11 +31,7 @@ const Logout = (props) => {
     }
 
     return(
-        <div if="logout-screen">
-            <form id="registerID" onSubmit={handleSubmit}>
-                <button type="Logout">Logout</button>
-            </form>
-        </div>
+        <button id="logout" onClick={handleClick}>Logout</button>
     )
 
 }

@@ -56,8 +56,6 @@ const Login = (props) => {
         //setPassword("")
     }
 
-    //ask Travis about the history.push method soo it will take the use back to whatever page they were just on. Right now it just redirects to the home(posts) page
-    // if(token){
     //     return(
     //         <Redirect to ="/"/>
     //     )
